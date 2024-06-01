@@ -60,13 +60,9 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(new Ray(camera.position, camera.forward), out hit, Mathf.Infinity, groundMask))  // FIXME (Timon): dedicated mask for interactables
         {
             Interactable interactable;
-            if (hit.collider.TryGetComponent(out interactable))
+            if (hit.collider.TryGetComponent(out interactable) || hit.collider.transform.parent != null && hit.collider.transform.parent.TryGetComponent(out interactable))
             {
-                Debug.Log("Interactable");
                 interactable.Interact();
-            } else
-            {
-                Debug.Log("Not interactable");
             }
         }
     }
@@ -78,7 +74,6 @@ public class PlayerController : MonoBehaviour
 
     private void Drop(InputAction.CallbackContext context)
     {
-        Debug.Log("dropping");
         foreach (Transform child in hand)
         {
             Rigidbody rigidbody;
@@ -86,7 +81,14 @@ public class PlayerController : MonoBehaviour
             {
                 rigidbody.isKinematic = false;
             }
+
             child.parent = null;
+
+            HoldableItem holdableItem;
+            if (child.TryGetComponent(out holdableItem))
+            {
+                holdableItem.OnDrop();
+            }
         }
     }
 
@@ -97,7 +99,6 @@ public class PlayerController : MonoBehaviour
         Rigidbody rigidbody;
         if (item.TryGetComponent(out rigidbody))
         {
-            Debug.Log("has rigidbody");
             rigidbody.isKinematic = true;
         }
     }

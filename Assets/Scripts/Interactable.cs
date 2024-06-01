@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private GameObject foundItem;
-    [SerializeField] private string text;
+    [SerializeField] protected GameObject foundItem;
+    [SerializeField] protected string text;
 
     IEnumerator ExecuteAfterTime(float time, Action task)
     {
