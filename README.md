@@ -11,3 +11,8 @@
 1. `git add .`
 2. `git commit -m "Your message"`
 3. `git push`
+4. Create a pull request
+5. Assign a reviewer
+6. Assign yourself
+7. Add any requested changes
+8. Wait for the reviewer to merge into main
