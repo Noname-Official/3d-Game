@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class SecurityCamera : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Light spotLight;
