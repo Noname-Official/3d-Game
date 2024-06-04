@@ -8,7 +8,6 @@ public class SecurityCamera : MonoBehaviour
     private void Update()
     {
         float angle = Vector3.Angle(transform.forward, player.position - transform.position);
-        Debug.Log(angle);
         if (angle < spotLight.spotAngle / 2)
         {
             Debug.Log("angle");

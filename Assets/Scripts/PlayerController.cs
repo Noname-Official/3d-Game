@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : PortalTraveller
 {
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float gravity = 98.1f;
@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController characterController;
     private float verticalSpeed = 0f;
+
+    public override void Travel(Vector3 newLoc, Quaternion newRot)
+    {
+        characterController.Move(newLoc - transform.position);
+        transform.rotation = newRot;
+    }
 
     void Start()
     {
